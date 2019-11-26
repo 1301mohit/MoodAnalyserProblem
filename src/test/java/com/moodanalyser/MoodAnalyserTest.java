@@ -39,4 +39,24 @@ public class MoodAnalyserTest {
         }
     }
 
+    @Test
+    public void givenMoodAnalyserClassName_ShouldReturnMoodAnalyserObject() {
+        MoodAnalyser moodAnalyser = null;
+        try {
+            moodAnalyser = MoodAnalyserFactory.createMoodAnalyse("I am in a Happy Mood", "com.moodanalyser.MoodAnalyser");
+        } catch (MoodAnalysisException e) {
+        }
+        Assert.assertEquals(new MoodAnalyser("I am in a Happy Mood"), moodAnalyser);
+    }
+
+    @Test
+    public void givenMoodAnalyserClassnameImproper_ShouldReturnException() {
+        MoodAnalyser moodAnalyser = null;
+        try {
+            moodAnalyser = MoodAnalyserFactory.createMoodAnalyse("I am in a Happy Mood", "com.moodanalyser.MoodAnalyzer");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.NO_SUCH_CLASS, e.getType());
+        }
+    }
+
 }
