@@ -59,4 +59,14 @@ public class MoodAnalyserTest {
         }
     }
 
+    @Test
+    public void givenMoodAnalyserConstructorParameterImproper_ShouldReturnException() {
+        MoodAnalyser moodAnalyser = null;
+        try {
+            moodAnalyser = MoodAnalyserFactory.createMoodAnalyse("I am in a Happy Mood", "com.moodanalyser.MoodAnalyser", "I am in Happy Mood");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.NO_SUCH_METHOD, e.getType());
+        }
+    }
+
 }
